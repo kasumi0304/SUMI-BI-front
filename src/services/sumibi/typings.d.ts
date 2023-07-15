@@ -1,5 +1,5 @@
 declare namespace API {
-  type BiResponse = {
+  type BiRespDto = {
     chartId?: number;
     genChart?: string;
     genResult?: string;
@@ -21,14 +21,7 @@ declare namespace API {
     userId?: number;
   };
 
-  type ChartAddRequest = {
-    chartData?: string;
-    chartType?: string;
-    goal?: string;
-    name?: string;
-  };
-
-  type ChartEditRequest = {
+  type ChartEditReqDto = {
     chartData?: string;
     chartType?: string;
     goal?: string;
@@ -36,7 +29,7 @@ declare namespace API {
     name?: string;
   };
 
-  type ChartQueryRequest = {
+  type ChartQueryReqDto = {
     chartType?: string;
     current?: number;
     goal?: string;
@@ -48,21 +41,7 @@ declare namespace API {
     userId?: number;
   };
 
-  type ChartUpdateRequest = {
-    chartData?: string;
-    chartType?: string;
-    createTime?: string;
-    genChart?: string;
-    genResult?: string;
-    goal?: string;
-    id?: number;
-    isDelete?: number;
-    name?: string;
-    updateTime?: string;
-    userId?: number;
-  };
-
-  type DeleteRequest = {
+  type DeleteReqDto = {
     id?: number;
   };
 
@@ -100,23 +79,13 @@ declare namespace API {
     name?: string;
   };
 
-  type genChartByAiUsingPOSTParams = {
+  type genChartUsingPOSTParams = {
     chartType?: string;
     goal?: string;
     name?: string;
   };
 
-  type getChartVOByIdUsingGETParams = {
-    /** id */
-    id?: number;
-  };
-
-  type getUserByIdUsingGETParams = {
-    /** id */
-    id?: number;
-  };
-
-  type getUserVOByIdUsingGETParams = {
+  type getChartByIdUsingGETParams = {
     /** id */
     id?: number;
   };
@@ -141,32 +110,6 @@ declare namespace API {
     total?: number;
   };
 
-  type PageUser_ = {
-    countId?: string;
-    current?: number;
-    maxLimit?: number;
-    optimizeCountSql?: boolean;
-    orders?: OrderItem[];
-    pages?: number;
-    records?: User[];
-    searchCount?: boolean;
-    size?: number;
-    total?: number;
-  };
-
-  type PageUserVO_ = {
-    countId?: string;
-    current?: number;
-    maxLimit?: number;
-    optimizeCountSql?: boolean;
-    orders?: OrderItem[];
-    pages?: number;
-    records?: UserVO[];
-    searchCount?: boolean;
-    size?: number;
-    total?: number;
-  };
-
   type Resource = {
     description?: string;
     file?: File;
@@ -178,9 +121,9 @@ declare namespace API {
     url?: URL;
   };
 
-  type RestRespBiResponse_ = {
+  type RestRespBiRespDto_ = {
     code?: number;
-    data?: BiResponse;
+    data?: BiRespDto;
     message?: string;
   };
 
@@ -208,33 +151,9 @@ declare namespace API {
     message?: string;
   };
 
-  type RestRespPageUser_ = {
-    code?: number;
-    data?: PageUser_;
-    message?: string;
-  };
-
-  type RestRespPageUserVO_ = {
-    code?: number;
-    data?: PageUserVO_;
-    message?: string;
-  };
-
-  type RestRespUser_ = {
-    code?: number;
-    data?: User;
-    message?: string;
-  };
-
   type RestRespUserLoginRespDto_ = {
     code?: number;
     data?: UserLoginRespDto;
-    message?: string;
-  };
-
-  type RestRespUserVO_ = {
-    code?: number;
-    data?: UserVO;
     message?: string;
   };
 
@@ -272,25 +191,6 @@ declare namespace API {
     userInfo?: string;
   };
 
-  type User = {
-    createTime?: string;
-    id?: number;
-    isDelete?: number;
-    updateTime?: string;
-    userAccount?: string;
-    userAvatar?: string;
-    userName?: string;
-    userPassword?: string;
-    userRole?: string;
-  };
-
-  type UserAddRequest = {
-    userAccount?: string;
-    userAvatar?: string;
-    userName?: string;
-    userRole?: string;
-  };
-
   type UserLoginReqDto = {
     userAccount?: string;
     userPassword?: string;
@@ -306,45 +206,9 @@ declare namespace API {
     userRole?: string;
   };
 
-  type UserQueryRequest = {
-    current?: number;
-    id?: number;
-    mpOpenId?: string;
-    pageSize?: number;
-    sortField?: string;
-    sortOrder?: string;
-    unionId?: string;
-    userName?: string;
-    userProfile?: string;
-    userRole?: string;
-  };
-
   type UserRegisterReqDto = {
     checkPassword?: string;
     userAccount?: string;
     userPassword?: string;
-  };
-
-  type UserUpdateMyRequest = {
-    userAvatar?: string;
-    userName?: string;
-    userProfile?: string;
-  };
-
-  type UserUpdateRequest = {
-    id?: number;
-    userAvatar?: string;
-    userName?: string;
-    userProfile?: string;
-    userRole?: string;
-  };
-
-  type UserVO = {
-    createTime?: string;
-    id?: number;
-    userAvatar?: string;
-    userName?: string;
-    userProfile?: string;
-    userRole?: string;
   };
 }

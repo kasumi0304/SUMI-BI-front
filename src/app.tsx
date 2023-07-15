@@ -5,6 +5,7 @@ import { LinkOutlined } from '@ant-design/icons';
 import { SettingDrawer } from '@ant-design/pro-components';
 import type { RunTimeLayoutConfig } from '@umijs/max';
 import { history, Link } from '@umijs/max';
+import defaultSettings from '../config/defaultSettings';
 import { AvatarDropdown, AvatarName } from './components/RightContent/AvatarDropdown';
 import { errorConfig } from './requestErrorConfig';
 
@@ -36,6 +37,7 @@ export async function getInitialState(): Promise<{
   }
   return {};
 }
+
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
@@ -99,7 +101,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
           <SettingDrawer
             disableUrlParams
             enableDarkTheme
-            settings={initialState?.settings}
+            settings={defaultSettings}
             onSettingChange={(settings) => {
               setInitialState((preInitialState) => ({
                 ...preInitialState,

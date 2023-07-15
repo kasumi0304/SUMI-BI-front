@@ -1,4 +1,3 @@
-import { genChartByAiUsingPOST } from '@/services/sumibi/chartController';
 import { UploadOutlined } from '@ant-design/icons';
 import {
   Button,
@@ -17,13 +16,14 @@ import {
 import TextArea from 'antd/es/input/TextArea';
 import ReactECharts from 'echarts-for-react';
 import React, { useState } from 'react';
+import {genChartUsingPOST} from "@/services/sumibi/chartController";
 
 /**
  * 添加图表页面
  * @constructor
  */
 const AddChart: React.FC = () => {
-  const [chart, setChart] = useState<API.BiResponse>();
+  const [chart, setChart] = useState<API.BiRespDto>();
   const [option, setOption] = useState<any>();
   const [submitting, setSubmitting] = useState<boolean>(false);
   /**
@@ -44,7 +44,7 @@ const AddChart: React.FC = () => {
       file: undefined,
     };
     try {
-      const res = await genChartByAiUsingPOST(params, {}, values.file.file.originFileObj);
+      const res = await genChartUsingPOST(params, {}, values.file.file.originFileObj);
       if (!res?.data) {
         message.error('分析失败');
       } else {

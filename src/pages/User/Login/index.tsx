@@ -34,7 +34,7 @@ const Lang = () => {
 
 const Login: React.FC = () => {
   const [type, setType] = useState<string>('account');
-  const { initialState, setInitialState } = useModel('@@initialState');
+  const { setInitialState } = useModel('@@initialState');
 
   const containerClassName = useEmotionCss(() => {
     return {
@@ -57,7 +57,7 @@ const Login: React.FC = () => {
     const userInfo = await getLoginUserUsingGET();
     if (userInfo) {
       flushSync(() => {
-        setInitialState((s) => ({
+        setInitialState((s): any => ({
           ...s,
           currentUser: userInfo,
         }));
@@ -78,6 +78,7 @@ const Login: React.FC = () => {
         await fetchUserInfo();
         const urlParams = new URL(window.location.href).searchParams;
         history.push(urlParams.get('redirect') || '/');
+        window.location.reload();
         return;
       } else {
         message.error(res.message);

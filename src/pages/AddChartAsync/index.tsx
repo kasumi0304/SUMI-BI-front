@@ -1,7 +1,5 @@
 import {
   genChartByAiAsyncMqUsingPOST,
-  genChartByAiASyncUsingPOST,
-  genChartByAiUsingPOST
 } from '@/services/sumibi/chartController';
 import { UploadOutlined } from '@ant-design/icons';
 import { Button, Card, Form, Input, message, Select, Space, Upload } from 'antd';

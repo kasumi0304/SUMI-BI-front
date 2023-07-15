@@ -9,7 +9,7 @@ const Settings: ProLayoutProps & {
 } = {
   navTheme: 'light',
   // 拂晓蓝
-  colorPrimary: '#722ED1',
+  colorPrimary: '#3e10d8',
   layout: 'mix',
   contentWidth: 'Fluid',
   fixedHeader: false,
@@ -17,7 +17,7 @@ const Settings: ProLayoutProps & {
   colorWeak: false,
   title: '粟米智能 BI',
   pwa: true,
-  logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+  logo: 'https://kasumi-1314099652.cos.ap-guangzhou.myqcloud.com/logo.svg',
   iconfontUrl: '',
   token: {
     // 参见ts声明，demo 见文档，通过token 修改样式

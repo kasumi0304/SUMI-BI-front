@@ -1,9 +1,10 @@
-import { listMyChartByPageUsingPOST } from '@/services/sumibi/chartController';
-import { useModel } from '@@/exports';
-import { Avatar, Card, List, message, Result } from 'antd';
+import {deleteChartUsingPOST, listMyChartByPageUsingPOST} from '@/services/sumibi/chartController';
+import {Link, useModel} from '@@/exports';
+import {Avatar, Button, Card, List, message, Modal, Result} from 'antd';
 import Search from 'antd/es/input/Search';
 import ReactECharts from 'echarts-for-react';
 import React, { useEffect, useState } from 'react';
+import {ExclamationCircleOutlined} from "@ant-design/icons";
 
 /**
  * 我的图表页面
@@ -17,7 +18,36 @@ const MyChartPage: React.FC = () => {
     sortOrder: 'desc',
   };
 
-  const [searchParams, setSearchParams] = useState<API.ChartQueryRequest>({ ...initSearchParams });
+  /**
+   * 删除图表
+   * @param chartId
+   */
+  const handleDelete = (chartId: any) => {
+    Modal.confirm({
+      title: '确认删除',
+      icon: <ExclamationCircleOutlined />,
+      content: '确定要删除这个图表吗？',
+      okText: '确认',
+      cancelText: '取消',
+      onOk: async () => {
+        try {
+          const res = await deleteChartUsingPOST({ id: chartId });
+          console.log('res:', res.data);
+          if (res.data) {
+            message.success('删除成功');
+            // 删除成功后重新加载图表数据
+            loadData();
+          } else {
+            message.error('删除失败');
+          }
+        } catch (e: any) {
+          message.error('删除失败' + e.message);
+        }
+      },
+    });
+  };
+
+  const [searchParams, setSearchParams] = useState<API.ChartQueryReqDto>({ ...initSearchParams });
   const { initialState } = useModel('@@initialState');
   const { currentUser } = initialState ?? {};
   const [chartList, setChartList] = useState<API.Chart[]>();
@@ -132,6 +162,14 @@ const MyChartPage: React.FC = () => {
                   </>
                 )}
               </>
+              <div style={{display:'flex', gap:'210px'}}>
+              <Link to={`/ViewChartData/${item.id}`}>
+                <Button>查看图表数据</Button>
+              </Link>
+              <Button danger onClick={() => handleDelete(item.id)}>
+                删除
+              </Button>
+              </div>
             </Card>
           </List.Item>
         )}

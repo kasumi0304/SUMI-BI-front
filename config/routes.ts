@@ -12,6 +12,13 @@
  */
 export default [
   {
+    path: '/viewChartData/:id',
+    icon: 'checkCircle',
+    component: './ViewChartData',
+    name: '查看图表',
+    hideInMenu: true,
+  },
+  {
     path: '/user',
     layout: false,
     routes: [
@@ -19,6 +26,11 @@ export default [
         name: 'login',
         path: '/user/login',
         component: './User/Login',
+      },
+      {
+        name: 'register',
+        path: '/user/register',
+        component: './User/Register',
       },
     ],
   },
