@@ -2,20 +2,6 @@
 /* eslint-disable */
 import { request } from '@umijs/max';
 
-/** addChart POST /chart/add */
-export async function addChartUsingPOST(
-  body: API.ChartAddRequest,
-  options?: { [key: string]: any },
-) {
-  return request<API.RestRespLong_>('/chart/add', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
-}
 
 /** deleteChart POST /chart/delete */
 export async function deleteChartUsingPOST(
@@ -73,6 +59,78 @@ export async function genChartByAiUsingPOST(
   });
 
   return request<API.RestRespBiResponse_>('/chart/gen', {
+    method: 'POST',
+    params: {
+      ...params,
+    },
+    data: formData,
+    requestType: 'form',
+    ...(options || {}),
+  });
+}
+
+/** genChartByAiASync POST /chart/gen/async */
+export async function genChartByAiASyncUsingPOST(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.genChartByAiASyncUsingPOSTParams,
+  body: {},
+  file?: File,
+  options?: { [key: string]: any },
+) {
+  const formData = new FormData();
+
+  if (file) {
+    formData.append('file', file);
+  }
+
+  Object.keys(body).forEach((ele) => {
+    const item = (body as any)[ele];
+
+    if (item !== undefined && item !== null) {
+      formData.append(
+        ele,
+        typeof item === 'object' && !(item instanceof File) ? JSON.stringify(item) : item,
+      );
+    }
+  });
+
+  return request<API.RestRespBiResponse_>('/chart/gen/async', {
+    method: 'POST',
+    params: {
+      ...params,
+    },
+    data: formData,
+    requestType: 'form',
+    ...(options || {}),
+  });
+}
+
+/** genChartByAiAsyncMq POST /chart/gen/async/mq */
+export async function genChartByAiAsyncMqUsingPOST(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.genChartByAiAsyncMqUsingPOSTParams,
+  body: {},
+  file?: File,
+  options?: { [key: string]: any },
+) {
+  const formData = new FormData();
+
+  if (file) {
+    formData.append('file', file);
+  }
+
+  Object.keys(body).forEach((ele) => {
+    const item = (body as any)[ele];
+
+    if (item !== undefined && item !== null) {
+      formData.append(
+        ele,
+        typeof item === 'object' && !(item instanceof File) ? JSON.stringify(item) : item,
+      );
+    }
+  });
+
+  return request<API.RestRespBiResponse_>('/chart/gen/async/mq', {
     method: 'POST',
     params: {
       ...params,
