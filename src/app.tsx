@@ -38,7 +38,6 @@ export async function getInitialState(): Promise<{
   return {};
 }
 
-
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
   return {
@@ -123,6 +122,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
  */
 export const request = {
   baseURL: 'http://localhost:8080',
+  // baseURL: 'http://43.136.59.100:8080',
   withCredentials: true,
   ...errorConfig,
 };
